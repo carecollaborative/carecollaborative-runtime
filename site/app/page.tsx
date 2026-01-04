@@ -3,41 +3,38 @@
 import React, { useState, useEffect } from 'react';
 import {
   Terminal,
-  Shield,
-  Lock,
-  Key,
-  CheckCircle,
-  FileText,
-  Layers,
-  Code,
+  Heart,
+  Stethoscope,
   Users,
+  CheckCircle,
+  Layers,
+  MessageSquare,
+  Brain,
   Building,
-  Zap,
-  GitBranch,
   AlertCircle,
-  CheckSquare,
   ArrowRight,
-  Github,
   Mail,
   Activity,
-  Cpu,
-  Database,
-  Server,
-  Network,
+  Target,
+  BarChart3,
+  UserCheck,
+  Award,
+  GraduationCap,
+  Video,
 } from 'lucide-react';
 
-type ActiveSection = 'hero' | 'problem' | 'solution' | 'features' | 'architecture' | 'contact';
+type ActiveSection = 'hero' | 'problem' | 'solution' | 'features' | 'how-it-works' | 'contact';
 
-export default function LatticeRuntime() {
+export default function CareCollaborative() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState<ActiveSection>('hero');
   const [consoleLines, setConsoleLines] = useState<string[]>([]);
   const [showCursor, setShowCursor] = useState(true);
   const [metrics, setMetrics] = useState({
-    throughput: 0,
-    latency: 0,
-    blocked: 0,
-    allowed: 0
+    interactions: 0,
+    avgScore: 0,
+    students: 0,
+    scenarios: 0
   });
 
   useEffect(() => {
@@ -46,34 +43,34 @@ export default function LatticeRuntime() {
     // Animate metrics
     const metricsInterval = setInterval(() => {
       setMetrics({
-        throughput: Math.floor(Math.random() * 50000) + 45000,
-        latency: Math.random() * 2 + 0.1,
-        blocked: Math.floor(Math.random() * 100) + 50,
-        allowed: Math.floor(Math.random() * 5000) + 8000
+        interactions: Math.floor(Math.random() * 500) + 2500,
+        avgScore: Math.random() * 10 + 75,
+        students: Math.floor(Math.random() * 50) + 150,
+        scenarios: Math.floor(Math.random() * 20) + 80
       });
     }, 2000);
 
-    // Simulate enforcement console
+    // Simulate training console
     const terminalLines = [
-      '$ lattice enforce --mode strict --verify-chains',
-      'Initializing Lattice Runtime v0.1.0...',
-      'Loading cryptographic policy chains...',
-      '✓ Identity verification layer: ACTIVE [SHA-256: 8f3a...]',
-      '✓ Authorization engine: ACTIVE [Policy count: 247]',
-      '✓ Audit blockchain: SYNCED [Block height: 142,857]',
-      '✓ Deployment constraints: ENFORCED [Zones: 12]',
-      '✓ Quantum-resistant signatures: ENABLED',
+      '$ care-collab train --mode interactive --eval-framework standard',
+      'Initializing Care Collaborative Training Platform v0.1.0...',
+      'Loading evidence-based assessment framework...',
+      '✓ AI Patient Simulation Engine: ACTIVE [Personas: 80]',
+      '✓ Feedback Evaluation System: ACTIVE [Frameworks: 8]',
+      '✓ Competency Assessment: ENABLED [Core competencies: 8]',
+      '✓ Voice/Video Communication: READY [Codecs: WebRTC, Opus]',
+      '✓ Transcript Analysis: ACTIVE [NLP Models: Loaded]',
       '',
-      'Agent request: deploy_model(model_id="gpt-4", region="us-east")',
-      '→ [0.023ms] Verifying identity signature...',
-      '→ [0.041ms] Checking authorization policies...',
-      '→ [0.015ms] Evaluating deployment constraints...',
-      '→ [0.008ms] Computing audit merkle proof...',
-      '✓ Request ALLOWED - All 247 policies satisfied',
-      '✓ Audit event recorded: event_id="ae7f2a1c" | block=142858',
-      '✓ Total enforcement time: 0.087ms',
+      'Student request: start_interaction(scenario="elderly_patient_falls")',
+      '→ [0.034ms] Loading patient persona: Mrs. Chen, 78, Cantonese...',
+      '→ [0.052ms] Initializing behavioral profile: anxious, cultural factors...',
+      '→ [0.028ms] Establishing video connection...',
+      '→ [0.015ms] Starting real-time transcription...',
+      '✓ Interaction STARTED - Duration: 12m 34s',
+      '✓ Assessment completed: Empathy=8.2/10 | Clarity=7.8/10 | Cultural Sensitivity=9.1/10',
+      '✓ Report generated: report_id="rpt_7f2a1c" | Overall Score: 82/100',
       '',
-      'Ready to enforce. Violations will be blocked.',
+      'Ready for next interaction. Evidence-based feedback available.',
       '$ _'
     ];
 
@@ -92,7 +89,7 @@ export default function LatticeRuntime() {
     }, 530);
 
     const handleScroll = () => {
-      const sections: ActiveSection[] = ['hero', 'problem', 'solution', 'features', 'architecture', 'contact'];
+      const sections: ActiveSection[] = ['hero', 'problem', 'solution', 'features', 'how-it-works', 'contact'];
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -115,9 +112,9 @@ export default function LatticeRuntime() {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-orange-500/20 selection:text-white transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-blue-900/200/20 selection:text-white transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Base gradient */}
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-orange-950/20 to-slate-950"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950"></div>
       
       {/* Lattice structure overlay - hexagonal molecular grid */}
       <div className="fixed inset-0 opacity-20" style={{
@@ -164,7 +161,7 @@ export default function LatticeRuntime() {
         <ProblemSection />
         <SolutionSection />
         <FeaturesSection />
-        <ArchitectureSection />
+        <HowItWorksSection />
         <ContactSection />
       </main>
 
@@ -180,33 +177,33 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
     { id: 'problem' as ActiveSection, label: 'Problem' },
     { id: 'solution' as ActiveSection, label: 'Solution' },
     { id: 'features' as ActiveSection, label: 'Features' },
-    { id: 'architecture' as ActiveSection, label: 'Architecture' },
+    { id: 'how-it-works' as ActiveSection, label: 'How It Works' },
     { id: 'contact' as ActiveSection, label: 'Contact' }
   ];
 
   return (
-    <header className="fixed w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-orange-500/10">
+    <header className="fixed w-full z-50 bg-slate-900/95 backdrop-blur-xl border-b border-blue-500/20">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-12">
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="w-8 h-8 bg-slate-950 border-2 border-orange-500/50 flex items-center justify-center relative overflow-hidden">
+                <div className="w-8 h-8 bg-slate-950 border-2 border-blue-500/50 flex items-center justify-center relative overflow-hidden">
                   {/* Lattice pattern in logo */}
                   <div className="absolute inset-0 opacity-20">
                     <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-                      <line x1="0" y1="0" x2="32" y2="32" stroke="currentColor" strokeWidth="1" className="text-orange-400"/>
-                      <line x1="32" y1="0" x2="0" y2="32" stroke="currentColor" strokeWidth="1" className="text-orange-400"/>
-                      <line x1="16" y1="0" x2="16" y2="32" stroke="currentColor" strokeWidth="1" className="text-orange-400"/>
-                      <line x1="0" y1="16" x2="32" y2="16" stroke="currentColor" strokeWidth="1" className="text-orange-400"/>
+                      <line x1="0" y1="0" x2="32" y2="32" stroke="currentColor" strokeWidth="1" className="text-blue-400"/>
+                      <line x1="32" y1="0" x2="0" y2="32" stroke="currentColor" strokeWidth="1" className="text-blue-400"/>
+                      <line x1="16" y1="0" x2="16" y2="32" stroke="currentColor" strokeWidth="1" className="text-blue-400"/>
+                      <line x1="0" y1="16" x2="32" y2="16" stroke="currentColor" strokeWidth="1" className="text-blue-400"/>
                     </svg>
                   </div>
-                  <Shield className="w-5 h-5 text-orange-400 relative z-10" />
+                  <Heart className="w-5 h-5 text-blue-400 relative z-10" fill="currentColor" />
                 </div>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-lg font-bold text-white">Lattice Runtime</span>
-                <span className="text-xs text-orange-400">Enforcement Infrastructure</span>
+                <span className="text-lg font-bold text-white">Care Collaborative</span>
+                <span className="text-xs text-blue-400">Healthcare Communication Training</span>
               </div>
             </div>
 
@@ -216,13 +213,13 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className={`text-sm hover:text-orange-400 transition-colors relative ${
-                        activeSection === item.id ? 'text-orange-400 font-medium' : 'text-slate-400'
+                      className={`text-sm hover:text-blue-400 transition-colors relative ${
+                        activeSection === item.id ? 'text-blue-400 font-medium' : 'text-slate-400'
                       }`}
                     >
                       {item.label}
                       {activeSection === item.id && (
-                        <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-orange-500"></span>
+                        <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-blue-900/200"></span>
                       )}
                     </a>
                   </li>
@@ -232,13 +229,11 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
           </div>
 
           <a
-            href="https://github.com/latticeHQ/lattice-runtime"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+            href="#contact"
+            className="hidden md:flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
           >
-            <Github size={14} className="mr-1.5" />
-            VIEW ON GITHUB
+            <Mail size={14} className="mr-1.5" />
+            REQUEST DEMO
           </a>
         </div>
       </div>
@@ -253,14 +248,14 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-flex items-center gap-3 text-xs font-medium text-orange-400 border-2 border-orange-500/30 px-5 py-2 mb-8 bg-slate-900/50 backdrop-blur-sm relative overflow-hidden">
+            <div className="inline-flex items-center gap-3 text-xs font-medium text-blue-400 border-2 border-blue-500/30 px-5 py-2 mb-8 bg-slate-900/50 backdrop-blur-sm relative overflow-hidden">
               {/* Lattice corner decorations */}
-              <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-orange-500/50"></div>
-              <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-orange-500/50"></div>
-              <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-orange-500/50"></div>
-              <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-orange-500/50"></div>
+              <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-blue-500/50"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-blue-500/50"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-blue-500/50"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-blue-500/50"></div>
               
-              <svg width="16" height="16" viewBox="0 0 16 16" className="text-orange-400">
+              <svg width="16" height="16" viewBox="0 0 16 16" className="text-blue-400">
                 <circle cx="8" cy="8" r="2" fill="currentColor"/>
                 <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.3"/>
                 <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="1"/>
@@ -268,63 +263,62 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
                 <line x1="2" y1="8" x2="6" y2="8" stroke="currentColor" strokeWidth="1"/>
                 <line x1="10" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1"/>
               </svg>
-              <span className="tracking-wide">ENTERPRISE ENFORCEMENT ARCHITECTURE</span>
+              <span className="tracking-wide">EVIDENCE-BASED TRAINING INFRASTRUCTURE</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">Runtime Enforcement</span>
+              <span className="text-white">AI-Powered Healthcare</span>
               <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-400">
-                for AI Agents
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400">
+                Communication Training
               </span>
             </h1>
 
             <p className="text-slate-400 text-xl mb-12 leading-relaxed max-w-2xl">
-              Lattice provides <span className="text-white font-medium">cryptographically-verified identity, zero-trust authorization, immutable audit, and deployment constraints</span> as enforced runtime primitives.
+              Care Collaborative provides <span className="text-white font-medium">AI patient simulations for unlimited practice and structured feedback evaluation tools</span> for evidence-based assessment of healthcare communication skills.
             </p>
 
             {/* Real-time metrics dashboard */}
-            <div className="grid grid-cols-2 gap-px mb-12 bg-orange-500/20 border-2 border-orange-500/30">
+            <div className="grid grid-cols-2 gap-px mb-12 bg-blue-900/200/20 border-2 border-blue-500/30">
               <div className="bg-slate-900/90 p-6 relative overflow-hidden">
                 {/* Corner markers */}
-                <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-orange-400/50"></div>
-                <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-orange-400/50"></div>
+                <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-blue-500/50/50"></div>
+                <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-blue-500/50/50"></div>
                 <div className="space-y-2">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Throughput</div>
+                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Interactions</div>
                   <div className="text-3xl font-bold text-white tabular-nums font-mono">
-                    {metrics.throughput.toLocaleString()}
-                    <span className="text-sm text-slate-500 ml-2 font-normal">req/s</span>
+                    {metrics.interactions.toLocaleString()}
                   </div>
                 </div>
               </div>
               <div className="bg-slate-900/90 p-6 relative overflow-hidden">
-                <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-orange-400/50"></div>
-                <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-orange-400/50"></div>
+                <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-blue-500/50/50"></div>
+                <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-blue-500/50/50"></div>
                 <div className="space-y-2">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Latency</div>
+                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Avg Score</div>
                   <div className="text-3xl font-bold text-white tabular-nums font-mono">
-                    {metrics.latency.toFixed(2)}
-                    <span className="text-sm text-slate-500 ml-2 font-normal">ms</span>
+                    {metrics.avgScore.toFixed(1)}
+                    <span className="text-sm text-slate-500 ml-2 font-normal">/100</span>
                   </div>
                 </div>
               </div>
               <div className="bg-slate-900/90 p-6 relative overflow-hidden">
-                <div className="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-orange-400/50"></div>
-                <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-orange-400/50"></div>
+                <div className="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-blue-500/50/50"></div>
+                <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-blue-500/50/50"></div>
                 <div className="space-y-2">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Allowed</div>
-                  <div className="text-3xl font-bold text-orange-400 tabular-nums font-mono">
-                    {metrics.allowed.toLocaleString()}
+                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Active Students</div>
+                  <div className="text-3xl font-bold text-blue-400 tabular-nums font-mono">
+                    {metrics.students.toLocaleString()}
                   </div>
                 </div>
               </div>
               <div className="bg-slate-900/90 p-6 relative overflow-hidden">
-                <div className="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-orange-400/50"></div>
-                <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-orange-400/50"></div>
+                <div className="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-blue-500/50/50"></div>
+                <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-blue-500/50/50"></div>
                 <div className="space-y-2">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Blocked</div>
-                  <div className="text-3xl font-bold text-orange-400 tabular-nums font-mono">
-                    {metrics.blocked}
+                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">AI Scenarios</div>
+                  <div className="text-3xl font-bold text-blue-400 tabular-nums font-mono">
+                    {metrics.scenarios}
                   </div>
                 </div>
               </div>
@@ -333,19 +327,17 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#solution"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-orange-600 text-white text-base font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 text-white text-base font-semibold rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Get Started
                 <ArrowRight size={18} />
               </a>
               <a
-                href="https://github.com/latticeHQ/lattice-runtime"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-800/50 border border-slate-700 text-slate-200 text-base font-semibold rounded-lg hover:bg-slate-800 hover:border-slate-600 transition-colors"
               >
-                <Github size={18} />
-                View on GitHub
+                <Mail size={18} />
+                Request Demo
               </a>
             </div>
           </div>
@@ -353,29 +345,29 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
           <div className="relative">
             <div className="relative">
               {/* Structural corner decorations */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-orange-500/30 pointer-events-none z-10"></div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-orange-500/30 pointer-events-none z-10"></div>
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-orange-500/30 pointer-events-none z-10"></div>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-orange-500/30 pointer-events-none z-10"></div>
+              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-blue-500/30 pointer-events-none z-10"></div>
+              <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-blue-500/30 pointer-events-none z-10"></div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-blue-500/30 pointer-events-none z-10"></div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-blue-500/30 pointer-events-none z-10"></div>
               
-              <div className="relative bg-slate-900/50 border-2 border-orange-500/30 overflow-hidden backdrop-blur-sm">
-                <div className="bg-slate-900/80 text-slate-400 py-3 px-4 border-b-2 border-orange-500/30 flex items-center text-sm">
-                  <Terminal size={14} className="mr-2 text-orange-400" />
-                  <span className="font-medium font-mono">lattice_enforcement.log</span>
+              <div className="relative bg-slate-900/50 border-2 border-blue-500/30 overflow-hidden backdrop-blur-sm">
+                <div className="bg-slate-900/80 text-slate-400 py-3 px-4 border-b-2 border-blue-500/30 flex items-center text-sm">
+                  <Terminal size={14} className="mr-2 text-blue-400" />
+                  <span className="font-medium font-mono">care_collaborative_training.log</span>
                   <div className="ml-auto flex gap-2">
                     <div className="w-2 h-2 border border-slate-600"></div>
                     <div className="w-2 h-2 border border-slate-600"></div>
-                    <div className="w-2 h-2 border border-orange-500"></div>
+                    <div className="w-2 h-2 border border-blue-500"></div>
                   </div>
                 </div>
 
                 <div className="p-6 font-mono text-sm text-slate-300 h-96 overflow-auto">
                   {consoleLines.map((line, index) => (
-                    <div key={index} className={line.startsWith('✓') ? 'text-orange-400' : line.startsWith('→') ? 'text-slate-500' : ''}>
+                    <div key={index} className={line.startsWith('✓') ? 'text-blue-400' : line.startsWith('→') ? 'text-slate-500' : ''}>
                       {line}
                     </div>
                   ))}
-                  {showCursor && <span className="inline-block w-2 h-4 bg-orange-400 ml-1 align-text-bottom animate-pulse"></span>}
+                  {showCursor && <span className="inline-block w-2 h-4 bg-blue-400 ml-1 align-text-bottom animate-pulse"></span>}
                 </div>
               </div>
             </div>
@@ -389,7 +381,7 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
 // Problem Section
 function ProblemSection() {
   return (
-    <section id="problem" className="py-24 border-t border-orange-500/10 relative">
+    <section id="problem" className="py-24 border-t border-blue-500/20 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -398,10 +390,10 @@ function ProblemSection() {
               THE CHALLENGE
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Enterprise Trust Requires Scale
+              Communication Skills Impact Patient Outcomes
             </h2>
             <p className="text-slate-400 text-lg">
-              Historically, meeting enterprise security requirements has required large organizations with dedicated platform teams.
+              Research proves physician-patient communication directly affects health outcomes, yet medical professionals receive inadequate training.
             </p>
           </div>
 
@@ -409,27 +401,27 @@ function ProblemSection() {
             <div className="bg-slate-900/50 border border-red-500/20 p-6">
               <div className="flex items-start mb-4">
                 <div className="p-2 bg-red-900/20 border border-red-500/30 mr-4">
-                  <Code className="w-6 h-6 text-red-400" />
+                  <AlertCircle className="w-6 h-6 text-red-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold mb-2">Application-Level Enforcement</h3>
+                  <h3 className="text-white font-semibold mb-2">Limited Training Resources</h3>
                   <p className="text-slate-400 text-sm">
-                    Every AI company re-implements SSO, RBAC, audit logs, and compliance controls inside their application code.
+                    Standardized patients are expensive, scheduling is complex, and scenario diversity is limited.
                   </p>
                 </div>
               </div>
               <ul className="space-y-2 ml-14">
                 <li className="text-slate-400 text-sm flex items-start">
                   <span className="text-red-500 mr-2">✗</span>
-                  Expensive engineering resources
+                  $200-400 per standardized patient session
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
                   <span className="text-red-500 mr-2">✗</span>
-                  Diverts from core product development
+                  Limited practice opportunities
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
                   <span className="text-red-500 mr-2">✗</span>
-                  Trust depends on code discipline
+                  No safe environment for difficult scenarios
                 </li>
               </ul>
             </div>
@@ -440,35 +432,35 @@ function ProblemSection() {
                   <Users className="w-6 h-6 text-red-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold mb-2">Coupled to Team Size</h3>
+                  <h3 className="text-white font-semibold mb-2">Subjective Feedback</h3>
                   <p className="text-slate-400 text-sm">
-                    Enterprise readiness becomes tightly coupled to organizational scale and team maturity.
+                    Instructor feedback is inconsistent, subjective, and varies widely across evaluators.
                   </p>
                 </div>
               </div>
               <ul className="space-y-2 ml-14">
                 <li className="text-slate-400 text-sm flex items-start">
                   <span className="text-red-500 mr-2">✗</span>
-                  Small teams can&apos;t compete
+                  25% of graduates feel unprepared for cultural competency
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
                   <span className="text-red-500 mr-2">✗</span>
-                  Innovation slowed by infrastructure work
+                  No objective assessment framework
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
                   <span className="text-red-500 mr-2">✗</span>
-                  Enterprise deals require large teams
+                  Faculty time scarce and expensive
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-12 bg-slate-900/50 border border-orange-500/20 p-8 text-center">
+          <div className="mt-12 bg-slate-900/50 border border-blue-500/20 p-8 text-center">
             <p className="text-white text-xl font-semibold mb-2">
-              The result: Only large organizations can ship software that enterprises trust.
+              The impact: $55B/year in malpractice expenses, often tied to communication failures.
             </p>
             <p className="text-slate-400">
-              This creates an artificial barrier between individual innovation and enterprise deployment.
+              58% of physicians face lawsuits during their career. Better communication training is critical.
             </p>
           </div>
         </div>
@@ -480,118 +472,118 @@ function ProblemSection() {
 // Solution Section
 function SolutionSection() {
   return (
-    <section id="solution" className="py-24 border-t border-orange-500/10 relative">
+    <section id="solution" className="py-24 border-t border-blue-500/20 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center text-xs bg-orange-900/20 border border-orange-500/30 px-3 py-1.5 mb-4">
+            <div className="inline-flex items-center text-xs bg-blue-900/20 border border-blue-500/30 px-3 py-1.5 mb-4">
               <CheckCircle size={14} className="mr-2" />
               THE SOLUTION
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Move Enforcement Into the Runtime
+              AI-Powered Training at Scale
             </h2>
             <p className="text-slate-400 text-lg">
-              Lattice decouples trust from team size by making enforcement a property of the runtime itself.
+              Care Collaborative combines AI patient simulations with evidence-based feedback evaluation to deliver scalable, objective communication training.
             </p>
           </div>
 
-          <div className="bg-slate-900/50 border border-orange-500/30 p-8 mb-12">
+          <div className="bg-slate-900/50 border border-blue-500/30 p-8 mb-12">
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-4xl font-bold text-orange-400 mb-2">1</div>
-                <h3 className="text-white font-semibold mb-2">Declare Constraints</h3>
+                <div className="text-4xl font-bold text-blue-400 mb-2">1</div>
+                <h3 className="text-white font-semibold mb-2">Unlimited Practice</h3>
                 <p className="text-slate-400 text-sm">
-                  Agent developers declare identity, authorization, audit, and deployment constraints once.
+                  Students practice with AI patients anytime, anywhere—diverse scenarios without resource constraints.
                 </p>
               </div>
 
               <div>
-                <div className="text-4xl font-bold text-orange-400 mb-2">2</div>
-                <h3 className="text-white font-semibold mb-2">Runtime Enforcement</h3>
+                <div className="text-4xl font-bold text-blue-400 mb-2">2</div>
+                <h3 className="text-white font-semibold mb-2">Evidence-Based Assessment</h3>
                 <p className="text-slate-400 text-sm">
-                  Lattice sits in the execution path and enforces constraints before actions are executed.
+                  Same research-backed framework evaluates both AI practice and instructor-student feedback sessions.
                 </p>
               </div>
 
               <div>
-                <div className="text-4xl font-bold text-orange-400 mb-2">3</div>
-                <h3 className="text-white font-semibold mb-2">Violations Blocked</h3>
+                <div className="text-4xl font-bold text-blue-400 mb-2">3</div>
+                <h3 className="text-white font-semibold mb-2">Objective Feedback</h3>
                 <p className="text-slate-400 text-sm">
-                  Policy violations are structurally impossible—enforcement happens by design, not by discipline.
+                  Instructors receive structured, objective data supporting personalized mentorship conversations.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-slate-900/50 border border-orange-500/20 p-6">
+            <div className="bg-slate-900/50 border border-blue-500/20 p-6">
               <h3 className="text-white font-semibold mb-4 flex items-center">
-                <Building className="w-5 h-5 text-orange-400 mr-2" />
-                For Enterprises
+                <Building className="w-5 h-5 text-blue-400 mr-2" />
+                For Healthcare Institutions
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-orange-400 mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-white font-medium">Enforced by Runtime</div>
-                    <div className="text-slate-400 text-sm">Trust is structural, not based on vendor promises</div>
+                    <div className="text-white font-medium">Scalable Training Infrastructure</div>
+                    <div className="text-slate-400 text-sm">Unlimited AI patient interactions without scheduling constraints</div>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-orange-400 mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-white font-medium">Auditable & Provable</div>
-                    <div className="text-slate-400 text-sm">All enforcement decisions are transparent and inspectable</div>
+                    <div className="text-white font-medium">Consistent Assessment Framework</div>
+                    <div className="text-slate-400 text-sm">Same standards applied across all students and instructors</div>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-orange-400 mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-white font-medium">Deploy Anywhere</div>
-                    <div className="text-slate-400 text-sm">Cloud, self-hosted, or air-gapped environments</div>
+                    <div className="text-white font-medium">Secure Platform</div>
+                    <div className="text-slate-400 text-sm">Enterprise-grade security with cloud-hosted or self-hosted options</div>
                   </div>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-slate-900/50 border border-orange-500/20 p-6">
+            <div className="bg-slate-900/50 border border-blue-500/20 p-6">
               <h3 className="text-white font-semibold mb-4 flex items-center">
-                <Code className="w-5 h-5 text-orange-400 mr-2" />
-                For Developers
+                <Users className="w-5 h-5 text-blue-400 mr-2" />
+                For Medical Learners
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-orange-400 mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-white font-medium">Build Capabilities, Not Infrastructure</div>
-                    <div className="text-slate-400 text-sm">Focus on agents, not enforcement systems</div>
+                    <div className="text-white font-medium">Safe Practice Environment</div>
+                    <div className="text-slate-400 text-sm">Learn from mistakes without patient harm or judgment</div>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-orange-400 mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-white font-medium">Enterprise-Ready from Day One</div>
-                    <div className="text-slate-400 text-sm">Ship to enterprises without a platform team</div>
+                    <div className="text-white font-medium">Diverse Patient Scenarios</div>
+                    <div className="text-slate-400 text-sm">Practice with varied cultures, ages, conditions, and communication styles</div>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-orange-400 mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-white font-medium">Scales with Revenue</div>
-                    <div className="text-slate-400 text-sm">Lattice grows with you as you close deals</div>
+                    <div className="text-white font-medium">Immediate, Detailed Feedback</div>
+                    <div className="text-slate-400 text-sm">Understand strengths and improvement areas after every interaction</div>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-orange-900/20 to-orange-800/20 border border-orange-500/30 p-8 text-center">
+          <div className="bg-gradient-to-r from-blue-900/20 to-blue-800/20 border border-blue-500/30 p-8 text-center">
             <p className="text-white text-2xl font-bold mb-2">
-              Individual developers can now ship software that enterprises trust.
+              Healthcare institutions can train communication skills that improve patient outcomes.
             </p>
             <p className="text-slate-400">
-              Enterprise-grade enforcement becomes structural, not organizational.
+              Evidence-based training becomes accessible and scalable for every program.
             </p>
           </div>
         </div>
@@ -603,150 +595,150 @@ function SolutionSection() {
 // Features Section
 function FeaturesSection() {
   return (
-    <section id="features" className="py-24 border-t border-orange-500/10 relative">
+    <section id="features" className="py-24 border-t border-blue-500/20 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center text-xs bg-orange-900/20 border border-orange-500/30 px-3 py-1.5 mb-4">
+          <div className="inline-flex items-center text-xs bg-blue-900/20 border border-blue-500/30 px-3 py-1.5 mb-4">
             <Layers size={14} className="mr-2" />
-            ENFORCEMENT PRIMITIVES
+            PLATFORM CAPABILITIES
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            What Lattice Enforces
+            Comprehensive Training Infrastructure
           </h2>
           <p className="text-slate-400 text-lg max-w-3xl mx-auto">
-            Four core enforcement layers that operate in the execution path, making violations impossible by construction.
+            Four core platform capabilities that deliver evidence-based healthcare communication training at scale.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <div className="bg-slate-900/50 border border-orange-500/30 p-8">
+          <div className="bg-slate-900/50 border border-blue-500/30 p-8">
             <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-900/20 border border-orange-500/30 mr-4">
-                <Key className="w-8 h-8 text-orange-400" />
+              <div className="p-3 bg-blue-900/20 border border-blue-500/30 mr-4">
+                <Brain className="w-8 h-8 text-blue-400" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Identity</h3>
-                <p className="text-orange-400 text-sm">Who or what is making the request?</p>
+                <h3 className="text-xl font-bold text-white">AI Patient Engine</h3>
+                <p className="text-blue-400 text-sm">Realistic Patient Simulations</p>
               </div>
             </div>
             <p className="text-slate-400 mb-4">
-              Verifies the identity of principals (users, services, agents) across cloud, self-hosted, and air-gapped environments.
+              Advanced AI models create authentic patient interactions across diverse scenarios, medical conditions, and cultural contexts.
             </p>
             <ul className="space-y-2">
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Multi-factor authentication support
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Natural language conversations
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Service account verification
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Emotional and behavioral realism
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Cross-environment identity federation
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Diverse patient demographics
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Zero-trust identity model
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Clinical scenario library (200+ cases)
               </li>
             </ul>
           </div>
 
-          <div className="bg-slate-900/50 border border-orange-500/30 p-8">
+          <div className="bg-slate-900/50 border border-blue-500/30 p-8">
             <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-900/20 border border-orange-500/30 mr-4">
-                <Lock className="w-8 h-8 text-orange-400" />
+              <div className="p-3 bg-blue-900/20 border border-blue-500/30 mr-4">
+                <Award className="w-8 h-8 text-blue-400" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Authorization</h3>
-                <p className="text-orange-400 text-sm">Is this action allowed?</p>
+                <h3 className="text-xl font-bold text-white">Assessment Framework</h3>
+                <p className="text-blue-400 text-sm">Evidence-Based Evaluation</p>
               </div>
             </div>
             <p className="text-slate-400 mb-4">
-              Evaluates whether an authenticated principal is permitted to perform a specific action on a resource.
+              Evaluates communication skills across 8 core competencies using research-backed frameworks and validated rubrics.
             </p>
             <ul className="space-y-2">
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Role-based access control (RBAC)
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                8 core competency domains
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Attribute-based policies (ABAC)
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Research-validated rubrics
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Fine-grained resource permissions
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Automated scoring with AI
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Dynamic policy evaluation
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Human instructor review
               </li>
             </ul>
           </div>
 
-          <div className="bg-slate-900/50 border border-orange-500/30 p-8">
+          <div className="bg-slate-900/50 border border-blue-500/30 p-8">
             <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-900/20 border border-orange-500/30 mr-4">
-                <FileText className="w-8 h-8 text-orange-400" />
+              <div className="p-3 bg-blue-900/20 border border-blue-500/30 mr-4">
+                <Video className="w-8 h-8 text-blue-400" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Audit</h3>
-                <p className="text-orange-400 text-sm">What happened and when?</p>
+                <h3 className="text-xl font-bold text-white">Feedback Tools</h3>
+                <p className="text-blue-400 text-sm">Structured Review Sessions</p>
               </div>
             </div>
             <p className="text-slate-400 mb-4">
-              Generates tamper-evident records of all enforcement decisions and agent actions for compliance and forensics.
+              Comprehensive tools for instructors to provide detailed, evidence-based feedback on student communication skills.
             </p>
             <ul className="space-y-2">
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Immutable audit trail
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Video/transcript review
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Cryptographic event signing
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Timestamped annotations
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Compliance reporting (SOC2, HIPAA, etc.)
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Competency-specific rubrics
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Real-time event streaming
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Actionable improvement plans
               </li>
             </ul>
           </div>
 
-          <div className="bg-slate-900/50 border border-orange-500/30 p-8">
+          <div className="bg-slate-900/50 border border-blue-500/30 p-8">
             <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-900/20 border border-orange-500/30 mr-4">
-                <Shield className="w-8 h-8 text-orange-400" />
+              <div className="p-3 bg-blue-900/20 border border-blue-500/30 mr-4">
+                <BarChart3 className="w-8 h-8 text-blue-400" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Deployment Constraints</h3>
-                <p className="text-orange-400 text-sm">Where can this run?</p>
+                <h3 className="text-xl font-bold text-white">Analytics & Compliance</h3>
+                <p className="text-blue-400 text-sm">Track Progress, Ensure Privacy</p>
               </div>
             </div>
             <p className="text-slate-400 mb-4">
-              Ensures agents execute only within approved boundaries, configurations, and environments.
+              Institutional dashboards track learner progress while maintaining enterprise-grade data security and privacy.
             </p>
             <ul className="space-y-2">
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Geographic restrictions
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Real-time competency tracking
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Network segmentation enforcement
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Cohort performance analytics
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Resource quota management
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Enterprise security infrastructure
               </li>
               <li className="text-slate-400 text-sm flex items-start">
-                <span className="text-orange-500 mr-2 font-mono">»</span>
-                Air-gap validation
+                <span className="text-blue-400 mr-2 font-mono">»</span>
+                Accreditation reporting
               </li>
             </ul>
           </div>
@@ -757,124 +749,143 @@ function FeaturesSection() {
 }
 
 // Architecture Section
-function ArchitectureSection() {
+function HowItWorksSection() {
   return (
-    <section id="architecture" className="py-24 border-t border-orange-500/10 relative">
+    <section id="how-it-works" className="py-24 border-t border-blue-500/20 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center text-xs bg-orange-900/20 border border-orange-500/30 px-3 py-1.5 mb-4">
-              <GitBranch size={14} className="mr-2" />
-              OPEN CORE ARCHITECTURE
+            <div className="inline-flex items-center text-xs bg-blue-900/20 border border-blue-500/30 px-3 py-1.5 mb-4">
+              <Video size={14} className="mr-2" />
+              TWO CORE FUNCTIONALITIES
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              How Lattice Works
+              How Care Collaborative Works
             </h2>
             <p className="text-slate-400 text-lg">
-              Lattice operates as a control plane in the execution path, enforcing policies before actions execute.
+              Two complementary workflows using the same evidence-based assessment framework.
             </p>
           </div>
 
-          <div className="bg-slate-900/50 border border-orange-500/30 p-8 mb-12">
-            <div className="font-mono text-sm">
-              <div className="flex items-center justify-between mb-4 text-orange-400">
-                <span>Agent Request</span>
-                <ArrowRight size={16} />
-                <span>Lattice Runtime</span>
-                <ArrowRight size={16} />
-                <span>Policy Evaluation</span>
-                <ArrowRight size={16} />
-                <span className="text-green-400">Allow</span>
-                <span className="text-slate-600">/</span>
-                <span className="text-red-400">Deny</span>
-              </div>
-              <div className="flex justify-center text-slate-600">
-                <ArrowRight size={16} className="rotate-90" />
-              </div>
-              <div className="text-center text-blue-400">
-                Audit Event Generated
-              </div>
-            </div>
-          </div>
-
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-slate-900/50 border border-orange-500/30 p-8">
+            <div className="bg-slate-900/50 border border-blue-500/30 p-8">
               <h3 className="text-white font-bold mb-6 flex items-center">
-                <CheckSquare className="w-5 h-5 text-orange-400 mr-2" />
-                Open Source (Apache 2.0)
+                <Brain className="w-5 h-5 text-blue-400 mr-2" />
+                Workflow 1: AI Patient Practice
               </h3>
               <p className="text-slate-400 text-sm mb-4">
-                The runtime enforcement layer is fully open source and auditable. This includes all components that evaluate and enforce policies.
+                Students practice independently with AI-powered patient personas in unlimited, safe scenarios.
               </p>
               <ul className="space-y-2">
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-orange-500 mr-2 font-mono">✓</span>
-                  Identity and authorization evaluation
+                  <span className="text-blue-400 mr-2 font-mono">→</span>
+                  Select/create patient scenario
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-orange-500 mr-2 font-mono">✓</span>
-                  Policy decision engine
+                  <span className="text-blue-400 mr-2 font-mono">→</span>
+                  Live voice/video with AI patient
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-orange-500 mr-2 font-mono">✓</span>
-                  Audit event generation
+                  <span className="text-blue-400 mr-2 font-mono">→</span>
+                  Real-time behavioral analysis
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-orange-500 mr-2 font-mono">✓</span>
-                  Self-hosted deployment primitives
+                  <span className="text-blue-400 mr-2 font-mono">→</span>
+                  Automated performance report
                 </li>
               </ul>
-              <div className="mt-4 p-3 bg-orange-900/10 border border-orange-500/20">
-                <p className="text-xs text-orange-400">
-                  <strong>Why open?</strong> Enterprises must inspect enforcement logic. Trust cannot depend on vendor opacity.
+              <div className="mt-4 p-3 bg-blue-900/10 border border-blue-500/20">
+                <p className="text-xs text-blue-400">
+                  <strong>Value:</strong> Unlimited practice volume in safe environment with diverse scenarios.
                 </p>
               </div>
             </div>
 
             <div className="bg-slate-900/50 border border-amber-500/30 p-8">
               <h3 className="text-white font-bold mb-6 flex items-center">
-                <Building className="w-5 h-5 text-amber-400 mr-2" />
-                Commercial (Enterprise Edition)
+                <UserCheck className="w-5 h-5 text-amber-400 mr-2" />
+                Workflow 2: Instructor Feedback Sessions
               </h3>
               <p className="text-slate-400 text-sm mb-4">
-                Enterprise control, governance, and administration features are commercially licensed for enterprise use.
+                Student-instructor conversations conducted via platform with structured, evidence-based assessment.
               </p>
               <ul className="space-y-2">
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-amber-500 mr-2 font-mono">✓</span>
-                  Administrative control planes
+                  <span className="text-amber-500 mr-2 font-mono">→</span>
+                  Platform-mediated conversation
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-amber-500 mr-2 font-mono">✓</span>
-                  Policy lifecycle management
+                  <span className="text-amber-500 mr-2 font-mono">→</span>
+                  Transcript analysis applied
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-amber-500 mr-2 font-mono">✓</span>
-                  Directory integrations (LDAP, SAML, OIDC)
+                  <span className="text-amber-500 mr-2 font-mono">→</span>
+                  Objective assessment generated
                 </li>
                 <li className="text-slate-400 text-sm flex items-start">
-                  <span className="text-amber-500 mr-2 font-mono">✓</span>
-                  Compliance reporting and exports
+                  <span className="text-amber-500 mr-2 font-mono">→</span>
+                  Instructor-guided feedback discussion
                 </li>
               </ul>
               <div className="mt-4 p-3 bg-amber-900/10 border border-amber-500/20">
                 <p className="text-xs text-amber-400">
-                  <strong>Why commercial?</strong> These components don&apos;t decide &quot;allow vs deny&quot;—they standardize operation at scale.
+                  <strong>Value:</strong> Expert guidance with objective data supporting personalized mentorship.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-900/50 border border-orange-500/20 p-8">
+          <div className="bg-slate-900/50 border border-blue-500/20 p-8 mb-12">
+            <h3 className="text-white font-bold mb-4">Evidence-Based Assessment Framework</h3>
+            <p className="text-slate-400 text-sm mb-6">
+              Both workflows use the same 8 core competencies evaluated against research-backed communication frameworks:
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <Heart className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Empathy</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <MessageSquare className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Clarity</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <Users className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Cultural Sensitivity</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <Activity className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Active Listening</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <Stethoscope className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Medical Knowledge</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <GraduationCap className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Patient Education</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <Target className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Rapport Building</p>
+              </div>
+              <div className="text-center p-3 bg-blue-900/10 border border-blue-500/20">
+                <Award className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-300">Professionalism</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-900/50 border border-blue-500/20 p-8">
             <h3 className="text-white font-bold mb-4">Getting Started</h3>
-            <div className="bg-slate-950 border border-orange-500/30 p-4 font-mono text-sm">
-              <div className="text-orange-400 mb-2"># Install Lattice Runtime (coming soon)</div>
-              <div className="text-slate-400">$ curl -fsSL https://latticeruntime.com/install.sh | sh</div>
-              <div className="text-slate-400 mt-4">$ lattice init</div>
-              <div className="text-slate-400">$ lattice enforce --config ./policies.yml</div>
+            <div className="bg-slate-950 border border-blue-500/30 p-4 font-mono text-sm">
+              <div className="text-blue-400 mb-2"># Request access for pilot program</div>
+              <div className="text-slate-400">→ Contact: hello@carecollaborative.cloud</div>
+              <div className="text-slate-400 mt-4">→ Demo available for medical schools</div>
+              <div className="text-slate-400">→ Enterprise trials for hospitals</div>
             </div>
             <p className="text-slate-400 text-sm mt-4">
-              Documentation, examples, and API references coming soon. Star the project on GitHub to follow development.
+              Both AI patient simulations and feedback evaluation tools included in all plans. See pricing for details.
             </p>
           </div>
         </div>
@@ -886,59 +897,57 @@ function ArchitectureSection() {
 // Contact Section
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 border-t border-orange-500/10 relative">
+    <section id="contact" className="py-24 border-t border-blue-500/20 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center text-xs bg-orange-900/20 border border-orange-500/30 px-3 py-1.5 mb-4">
+          <div className="inline-flex items-center text-xs bg-blue-900/20 border border-blue-500/30 px-3 py-1.5 mb-4">
             <Mail size={14} className="mr-2" />
-            GET IN TOUCH
+            REQUEST A DEMO
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Join the Development
+            Transform Your Training Program
           </h2>
           <p className="text-slate-400 text-lg mb-12">
-            Lattice is in active development. We welcome contributions, feedback, and early adopters.
+            Join leading medical institutions using Care Collaborative to train the next generation of healthcare professionals.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <a
-              href="https://github.com/latticeHQ/lattice-runtime"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-slate-900/50 border border-orange-500/30 p-6 hover:border-orange-500/50 transition group"
+              href="mailto:demo@carecollaborative.cloud"
+              className="bg-slate-900/50 border border-blue-500/30 p-6 hover:border-blue-500/50 transition group"
             >
-              <Github className="w-8 h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition" />
-              <h3 className="text-white font-semibold mb-2">GitHub</h3>
-              <p className="text-slate-400 text-sm">View source, report issues, contribute code</p>
+              <Video className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:scale-110 transition" />
+              <h3 className="text-white font-semibold mb-2">Request Demo</h3>
+              <p className="text-slate-400 text-sm">See the platform in action</p>
             </a>
 
             <a
-              href="mailto:hello@latticeruntime.com"
-              className="bg-slate-900/50 border border-orange-500/30 p-6 hover:border-orange-500/50 transition group"
+              href="mailto:sales@carecollaborative.cloud"
+              className="bg-slate-900/50 border border-blue-500/30 p-6 hover:border-blue-500/50 transition group"
             >
-              <Mail className="w-8 h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition" />
-              <h3 className="text-white font-semibold mb-2">Email</h3>
-              <p className="text-slate-400 text-sm">hello@latticeruntime.com</p>
+              <Mail className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:scale-110 transition" />
+              <h3 className="text-white font-semibold mb-2">Contact Sales</h3>
+              <p className="text-slate-400 text-sm">sales@carecollaborative.cloud</p>
             </a>
 
             <a
-              href="mailto:security@latticeruntime.com"
-              className="bg-slate-900/50 border border-orange-500/30 p-6 hover:border-orange-500/50 transition group"
+              href="mailto:partnerships@carecollaborative.cloud"
+              className="bg-slate-900/50 border border-blue-500/30 p-6 hover:border-blue-500/50 transition group"
             >
-              <Shield className="w-8 h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition" />
-              <h3 className="text-white font-semibold mb-2">Security</h3>
-              <p className="text-slate-400 text-sm">Report vulnerabilities</p>
+              <Users className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:scale-110 transition" />
+              <h3 className="text-white font-semibold mb-2">Partnerships</h3>
+              <p className="text-slate-400 text-sm">Institutional collaborations</p>
             </a>
           </div>
 
-          <div className="bg-gradient-to-r from-orange-900/20 to-orange-800/20 border border-orange-500/30 p-8">
-            <h3 className="text-white text-xl font-bold mb-3">Interested in Enterprise Edition?</h3>
+          <div className="bg-gradient-to-r from-blue-900/20 to-blue-800/20 border border-blue-500/30 p-8">
+            <h3 className="text-white text-xl font-bold mb-3">Ready to Transform Your Program?</h3>
             <p className="text-slate-400 mb-6">
-              We&apos;re working with select early partners to shape the enterprise features. Get in touch to learn more.
+              Join leading medical schools and hospitals using Care Collaborative. Enterprise features include cohort management, advanced analytics, and dedicated support.
             </p>
             <a
-              href="mailto:enterprise@latticeruntime.com"
-              className="inline-flex items-center px-6 py-3 bg-orange-600 text-white hover:bg-purple-700 transition font-semibold"
+              href="mailto:enterprise@carecollaborative.cloud"
+              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 transition font-semibold"
             >
               <Mail size={18} className="mr-2" />
               CONTACT ENTERPRISE TEAM
@@ -953,31 +962,31 @@ function ContactSection() {
 // Footer
 function Footer() {
   return (
-    <footer className="border-t border-orange-500/10 py-8 relative">
+    <footer className="border-t border-blue-500/20 py-8 relative">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-3 mb-4 md:mb-0">
-            <div className="w-6 h-6 bg-slate-950 border-2 border-orange-500/50 flex items-center justify-center">
-              <Shield className="w-4 h-4 text-orange-500" />
+            <div className="w-6 h-6 bg-slate-950 border-2 border-blue-500/50 flex items-center justify-center">
+              <Heart className="w-4 h-4 text-blue-400" fill="currentColor" />
             </div>
-            <span className="text-white font-bold">Lattice Runtime</span>
+            <span className="text-white font-bold">Care Collaborative</span>
           </div>
 
           <div className="flex items-center space-x-6 text-sm text-slate-400">
-            <a href="https://github.com/latticeHQ/lattice-runtime" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition">
-              GitHub
+            <a href="#features" className="hover:text-blue-400 transition">
+              Features
             </a>
-            <a href="/docs" className="hover:text-orange-400 transition">
-              Documentation
+            <a href="#how-it-works" className="hover:text-blue-400 transition">
+              How It Works
             </a>
-            <a href="https://github.com/latticeHQ/lattice-runtime/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition">
-              Apache 2.0 License
+            <a href="mailto:privacy@carecollaborative.cloud" className="hover:text-blue-400 transition">
+              Privacy & Security
             </a>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-orange-500/10 text-center text-xs text-slate-500">
-          <p>© 2026 Lattice Runtime. Open source runtime enforcement for autonomous AI agents.</p>
+        <div className="mt-8 pt-6 border-t border-blue-500/20 text-center text-xs text-slate-500">
+          <p>© 2025 Care Collaborative. AI-powered healthcare communication training platform.</p>
         </div>
       </div>
     </footer>
